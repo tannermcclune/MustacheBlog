@@ -1,0 +1,12 @@
+<div id="body">
+    <h1><span>style gallery</span></h1>
+    <ul class="gallery">
+        <% styles.forEach(style => { %>
+        <li>
+            <a href="<%= `/styles/${style._id}` %>">
+                <img src="<%= style.imageURL %>" alt="">
+            </a>
+        </li>
+        <% }); %>
+    </ul>
+</div>
