@@ -14,21 +14,21 @@ const express = require("express"),
   db = mongoose.connection;
 
   mongoose.connect(
-    "mongodb+srv://mis5050db:mountain420@clustermis5050.sykse.mongodb.net/mustacchio?retryWrites=true&w=majority",
+    "ADD_MONGO_CONNECTION_STRING_HERE",
     { useNewUrlParser: true, useUnifiedTopology: true }
   );
   mongoose.set("useCreateIndex", true);
 
   app.set("port", process.env.PORT || 3000);
   app.set("view engine", "ejs");
-  
+
   router.use(methodOverride("_method", {methods: ["POST", "GET"]}));
   router.use(layouts);
   router.use(express.static("public"));
   router.use(express.urlencoded({extended: false}));
   router.use(express.json());
   app.use(homeController.logRequestPaths);
-  
+
   router.get("/", homeController.index);
   router.get("/about", homeController.about);
 
@@ -41,7 +41,7 @@ const express = require("express"),
   router.post("/blog/create", blogController.create, blogController.redirectView);
   router.get("/blog", blogController.blog, blogController.blogView);
   router.get("/blog/:id", blogController.show, blogController.showBlog);
-  
+
 
   //CONTACT ROUTING
   router.get("/contact-list", contactController.contact, contactController.contactView);
@@ -62,4 +62,3 @@ const express = require("express"),
   app.listen(app.get("port"), () => {
     console.log(`Server running at http://localhost:${app.get("port")}`);
   });
-  
